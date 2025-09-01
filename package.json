@@ -1,7 +1,8 @@
 {
 	"name": "fcc-learn-npm-package-json",
 	"author": "Lo-Deck",
-	"description": "FreeCodeCamp Managing Packages with NPM course 2",
+	"description": "FreeCodeCamp Managing Packages with NPM course 3",
+	"keywords":["freecodecamp", "testing", "first step in back-end"],
 	"dependencies": {
 		"express": "^4.14.0"
 	},
