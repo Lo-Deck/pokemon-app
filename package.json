@@ -3,6 +3,7 @@
 	"author": "Lo-Deck",
 	"description": "FreeCodeCamp Managing Packages with NPM course 3",
 	"keywords":["freecodecamp", "testing", "first step in back-end"],
+	"license": "MIT",
 	"dependencies": {
 		"express": "^4.14.0"
 	},
