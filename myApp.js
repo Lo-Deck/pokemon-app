@@ -5,6 +5,9 @@ console.log('Hello World');
 
 
 
+app.use('/public', express.static(__dirname + '/public'));
+
+
 app.get( '/', (req, res) => {
 
     // res.send('Hello Express');
@@ -12,11 +15,8 @@ app.get( '/', (req, res) => {
 
     // absolutePath = __dirname + "/views/index.html";
 
-    // res.sendFile(__dirname + "/views/index.html");
+    res.sendFile(__dirname + "/views/index.html");
 
-    // app.use(express.static(__dirname + "/public"));
-
-    app.use('/public', express.static(__dirname + '/public'));
 
 
 
