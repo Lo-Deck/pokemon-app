@@ -51,18 +51,13 @@ app.get("/name", function (req, res) {
     // app.route(path).get(handler).post(handler).
 });
 
-
-
-
 app.post("/name", function (req, res) {
+    const { first, last } = req.body;
 
     console.log(first + " " + last);
 
     res.json({ name: `${first} ${last}` });
-
 });
-
-
 
 // app.get( '/json', (req, res) => {
 
