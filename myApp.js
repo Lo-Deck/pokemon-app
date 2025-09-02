@@ -1,8 +1,13 @@
-require('dotenv').config();
+require("dotenv").config();
 
-let express = require('express');
+let express = require("express");
 let app = express();
 
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// app.use(bodyParser.json());
 
 // console.log('Hello World');
 
@@ -15,8 +20,6 @@ let app = express();
 //   next();
 // });
 
-
-
 // app.get('/now', function(req, res, next) {
 
 //         req.time = new Date().toString();
@@ -26,39 +29,41 @@ let app = express();
 //     }, function(req, res) {
 
 //         res.send({time: req.time});
-        
+
 //     }
 // );
 
+app.use("/public", express.static(__dirname + "/public"));
 
-
-
-
-
-
-app.use('/public', express.static(__dirname + '/public'));
-
-app.get( '/', (req, res) => {
+app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
 
-
-app.get('/name',  function(req, res) {
-
-    const {first, last} = req.query;
+app.get("/name", function (req, res) {
+    const { first, last } = req.query;
 
     // { name: 'firstname lastname'}
 
+    console.log(first + " " + last);
 
-    req.json({ name: `${first} ${last}`});
-
+    res.json({ name: `${first} ${last}` });
 
     // app.route(path).get(handler).post(handler).
-        
 });
 
 
-    
+
+
+app.post("/name", function (req, res) {
+
+    console.log(first + " " + last);
+
+    res.json({ name: `${first} ${last}` });
+
+});
+
+
+
 // app.get( '/json', (req, res) => {
 
 //     console.log(process.env.MESSAGE_STYLE);
@@ -71,35 +76,4 @@ app.get('/name',  function(req, res) {
 
 // });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- module.exports = app;
+module.exports = app;
