@@ -6,6 +6,14 @@ let app = express();
 
 // console.log('Hello World');
 
+app.use(function(req, res, next){
+
+    // console.log("I'm a middleware...");
+    console.log(`${req.method}  ${req.path} - ${req.ip}`);
+    next();
+
+});
+
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -14,28 +22,19 @@ app.get( '/', (req, res) => {
 });
 
     
-// app.get( '/json', (req, res) => {
+app.get( '/json', (req, res) => {
 
-//     console.log(process.env.MESSAGE_STYLE);
+    console.log(process.env.MESSAGE_STYLE);
 
-//     let message = process.env.MESSAGE_STYLE;
-
-//     if(process.env.MESSAGE_STYLE === 'uppercase'){
-//         res.json({"message": message.toUpperCase()});
-//     }
-//     else{
-//         res.json({"message": message});    
-//     }
-
-// });
-
-app.use(function(req, res, next){
-
-    // console.log("I'm a middleware...");
-    console.log(`${req.method}  ${req.path} - ${req.ip}`);
-    next();
+    if (process.env.MESSAGE_STYLE === "uppercase") {
+        res.json({ message: "HELLO JSON" });
+    } else {
+        res.json({ message: "Hello json" });
+    }
 
 });
+
+
 
 
 
