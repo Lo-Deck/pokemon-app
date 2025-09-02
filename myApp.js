@@ -17,18 +17,18 @@ app.use(function (req, res, next) {
 
 
 
-app.get('/now', function(req, res, next) {
+// app.get('/now', function(req, res, next) {
 
-        req.time = new Date().toString();
+//         req.time = new Date().toString();
 
-        next();
+//         next();
 
-    }, function(req, res) {
+//     }, function(req, res) {
 
-        res.send({time: req.time});
+//         res.send({time: req.time});
         
-    }
-);
+//     }
+// );
 
 
 
@@ -42,18 +42,28 @@ app.get( '/', (req, res) => {
     res.sendFile(__dirname + "/views/index.html");
 });
 
-    
-app.get( '/json', (req, res) => {
 
-    console.log(process.env.MESSAGE_STYLE);
+app.get('/:word/echo',  function(req, res) {
 
-    if (process.env.MESSAGE_STYLE === "uppercase") {
-        res.json({ message: "HELLO JSON" });
-    } else {
-        res.json({ message: "Hello json" });
-    }
+    const word = req.params.word;
 
+    req.json({echo: word});
+        
 });
+
+
+    
+// app.get( '/json', (req, res) => {
+
+//     console.log(process.env.MESSAGE_STYLE);
+
+//     if (process.env.MESSAGE_STYLE === "uppercase") {
+//         res.json({ message: "HELLO JSON" });
+//     } else {
+//         res.json({ message: "Hello json" });
+//     }
+
+// });
 
 
 
