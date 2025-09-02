@@ -6,14 +6,14 @@ let app = express();
 
 // console.log('Hello World');
 
-app.use(function (req, res, next) {
-  // console.log("I'm a middleware...");
-  // console.log(`${req.method}  ${req.path} - ${req.ip}`);
-  var string = req.method + " " + req.path + " - " + req.ip;
-  console.log(string);
+// app.use(function (req, res, next) {
+//   // console.log("I'm a middleware...");
+//   // console.log(`${req.method}  ${req.path} - ${req.ip}`);
+//   var string = req.method + " " + req.path + " - " + req.ip;
+//   console.log(string);
 
-  next();
-});
+//   next();
+// });
 
 
 
@@ -43,11 +43,17 @@ app.get( '/', (req, res) => {
 });
 
 
-app.get('/:word/echo',  function(req, res) {
+app.get('/name',  function(req, res) {
 
-    const word = req.params.word;
+    const {first, last} = req.query;
 
-    req.json({echo: word});
+    // { name: 'firstname lastname'}
+
+
+    req.json({ name: `${first} ${last}`});
+
+
+    // app.route(path).get(handler).post(handler).
         
 });
 
