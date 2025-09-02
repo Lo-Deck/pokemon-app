@@ -18,10 +18,14 @@ app.get( '/json', (req, res) => {
 
     console.log(process.env.MESSAGE_STYLE);
 
-    res.json({"message": "Hello json"});    
+    let message = process.env.MESSAGE_STYLE;
+
 
     if(process.env.MESSAGE_STYLE === 'uppercase'){
-        res.json({"message": "HELLO JSON"});
+        res.json({"message": message.uppercase()});
+    }
+    else{
+        res.json({"message": "Hello json"});    
     }
 
 
