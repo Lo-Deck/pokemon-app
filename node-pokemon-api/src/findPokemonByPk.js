@@ -1,7 +1,7 @@
 
 
 const { Pokemon } = require('./sequelize');
-const auth = require('../auth/auth')
+const auth = require('./auth/auth')
 
   
 module.exports = (app) => {
