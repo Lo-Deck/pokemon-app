@@ -63,30 +63,34 @@ const initDb = () => {
   return sequelize.sync().then(_ => {
 
     Pokemon.count().then(count => {
-        if (count === 0) {
-          pokemons.map(pokemon => {
-            Pokemon.create({
-              name: pokemon.name,
-              hp: pokemon.hp,
-              cp: pokemon.cp,
-              picture: pokemon.picture,
-              types: pokemon.types
-            }).then(pokemon => console.log(pokemon.toJSON()))
-          })
-      
 
-          bcrypt.hash('pikachu', 10)
-            .then( hash => User.create({ username: 'pikachu', password: hash }) )
-            .then( user => console.log(user.toJSON()) );
+      if (count === 0) {
 
-          console.log('La base de donnée a bien été initialisée !')
+        pokemons.map(pokemon => {
+          Pokemon.create({
+            name: pokemon.name,
+            hp: pokemon.hp,
+            cp: pokemon.cp,
+            picture: pokemon.picture,
+            types: pokemon.types
+          }).then(pokemon => console.log(pokemon.toJSON()))
+        })
+    
+        bcrypt.hash('pikachu', 10)
+          .then( hash => User.create({ username: 'pikachu', password: hash }) )
+          .then( user => console.log(user.toJSON()) );
 
-      }
-      else{
-          console.log('La base de donnée a DEJA été initialisée !')
-      }
+        console.log('La base de donnée a bien été initialisée !')
+
+    }
+    else{
+
+      console.log('La base de donnée a DEJA été initialisée !')
+
+    }
+
   })
-}
+})}
   
 module.exports = {
   initDb, Pokemon, User
