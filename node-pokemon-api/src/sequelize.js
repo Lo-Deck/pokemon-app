@@ -10,15 +10,50 @@ const UserModel = require('./user')
 const bcrypt = require('bcrypt')
 
 
+
+let sequelize;
+
+if(process.env.NODE_ENV === 'production'){
+    // 1. UTILISER DATABASE_URL fournie par Render (Postgres)
+    sequelize = new Sequelize(process.env.DATABASE_URL, {
+        dialect: 'postgres', // IMPORTANT : Adapter le dialecte
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            },
+            timezone: 'Etc/GMT-2',
+        },
+        logging: false
+    });
+}
+else{
+  sequelize = new Sequelize('pokedex', 'root', '', {
+      host: 'localhost',
+      dialect: 'mariadb', // dialecte local
+      dialectOptions: {
+          timezone: 'Etc/GMT-2',
+      },
+      logging: false
+  });
+}
+
+
+
+
+
   
-const sequelize = new Sequelize('pokedex', 'root', '', {
-  host: 'localhost',
-  dialect: 'mariadb',
-  dialectOptions: {
-    timezone: 'Etc/GMT-2',
-  },
-  logging: false
-});
+// const sequelize = new Sequelize('pokedex', 'root', '', {
+//   host: 'localhost',
+//   dialect: 'mariadb',
+//   dialectOptions: {
+//     timezone: 'Etc/GMT-2',
+//   },
+//   logging: false
+// });
+
+
+
 
 const Pokemon = PokemonModel(sequelize, DataTypes)
 

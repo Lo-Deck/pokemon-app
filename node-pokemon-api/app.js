@@ -1,13 +1,12 @@
 
 const express = require('express');
-const morgan = require('morgan');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 
 const sequelize = require('./src/sequelize');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 
 /* SEQUELIZE */
@@ -16,12 +15,15 @@ const port = 3000;
 /* EXPRESS */                        
 
 app.use(favicon(__dirname + '/favicon-node.ico'))
-    .use(morgan('dev'))
-    .use(bodyParser.json());
+   .use(bodyParser.json());
 
 
 
 sequelize.initDb();
+
+app.get('/', (req, res) => {
+    res.json('Hello Render ! ')
+})
 
 require('./src/findAllPokemons')(app);
 require('./src/findPokemonByPk')(app);

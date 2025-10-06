@@ -4,7 +4,7 @@
   "description": "app exercise node.js",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "NODE_ENV=production node app.js"
   },
   "author": "Lo-Deck",
   "license": "ISC",
@@ -19,6 +19,5 @@
     "serve-favicon": "^2.5.1"
   },
   "devDependencies": {
-    "morgan": "^1.10.1"
   }
 }
